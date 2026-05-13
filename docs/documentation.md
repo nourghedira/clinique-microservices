@@ -120,6 +120,12 @@ Mutations disponibles :
 - modifierRendezvous
 - supprimerRendezvous
 
+## Pourquoi GraphQL ?
+GraphQL permet au client de demander exactement 
+les champs nécessaires sans surcharge de données,
+contrairement à REST qui retourne toujours 
+tous les champs.
+
 ## 6. Sécurité
 
 - CORS activé sur l'API Gateway
