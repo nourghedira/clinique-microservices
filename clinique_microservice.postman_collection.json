@@ -1,0 +1,416 @@
+{
+  "info": {
+    "_postman_id": "c294235f-c4a1-451e-a217-d460a283dc73",
+    "name": "clinique_microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52242563",
+    "_collection_link": "https://go.postman.co/collection/52242563-c294235f-c4a1-451e-a217-d460a283dc73?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Ajouter patient",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"Ghedira\",\r\n  \"prenom\": \"Firas\",\r\n  \"dateNaissance\": \"23-04-1993\",\r\n  \"telephone\": \"2875223\",\r\n  \"email\": \"firas@email.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/patients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Tous les patients",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/patients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Patient par ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/patients/676b2441-8aac-4c48-a927-dca79039760c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients",
+            "676b2441-8aac-4c48-a927-dca79039760c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT - Modifier patient",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"Ghedira\",\r\n  \"prenom\": \"Nour\",\r\n  \"dateNaissance\": \"05-04-2002\",\r\n  \"telephone\": \"99887766\",\r\n  \"email\": \"nour.updated@email.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/patients/676b2441-8aac-4c48-a927-dca79039760c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients",
+            "676b2441-8aac-4c48-a927-dca79039760c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Ajouter rendez-vous",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"patientId\": \"676b2441-8aac-4c48-a927-dca79039760c\",\r\n  \"medecin\": \"Dr. Ben Salah\",\r\n  \"date\": \"2026-06-01\",\r\n  \"heure\": \"10:00\",\r\n  \"motif\": \"Consultation générale\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/rendezvous",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rendezvous"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Tous les rendez-vous",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"patientId\": \"676b2441-8aac-4c48-a927-dca79039760c\",\r\n  \"medecin\": \"Dr. Ben Salah\",\r\n  \"date\": \"2026-06-01\",\r\n  \"heure\": \"10:00\",\r\n  \"motif\": \"Consultation générale\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/rendezvous",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rendezvous"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Toutes les notifications",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notifications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "notifications"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Notifications par patient",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notifications/676b2441-8aac-4c48-a927-dca79039760c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "notifications",
+            "676b2441-8aac-4c48-a927-dca79039760c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE - Supprimer patient",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/patients/5d0c3a21-b78a-4ca3-8fba-7451e256ffa5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients",
+            "5d0c3a21-b78a-4ca3-8fba-7451e256ffa5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GraphQL - Tous les patients",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"{ patients { id nom prenom telephone email } }\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GraphQL - Ajouter patient",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation { ajouterPatient(nom: \\\"ghedira\\\", prenom: \\\"ines\\\", dateNaissance: \\\"2003-03-07\\\", telephone: \\\"55667788\\\", email: \\\"ines@email.com\\\") { id nom prenom } }\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GraphQL - Ajouter rendez-vous",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation { ajouterRendezvous(patientId: \\\"06c4dcd1-af68-48cc-b5cf-07339e12149c\\\", medecin: \\\"Dr. Mansour\\\", date: \\\"2026-06-15\\\", heure: \\\"14:00\\\", motif: \\\"Suivi\\\") { id patientId medecin date statut } }\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GraphQL - Toutes les rendez-vous",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"{ rendezvous { id patientId medecin date heure statut } }\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GraphQL - Toutes les notifications",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Erreur 404 patient",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/patients/22359865",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "patients",
+            "22359865"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Erreur 404 rendez-vous",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/rendezvous/9988457",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rendezvous",
+            "9988457"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Rendez-vous par ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/rendezvous/8b12751d-6803-4113-8d0f-f43de2247ddc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rendezvous",
+            "8b12751d-6803-4113-8d0f-f43de2247ddc"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
