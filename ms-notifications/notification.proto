@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package notifications;
+
+service NotificationService {
+  rpc GetAllNotifications (Empty) returns (NotificationList);
+  rpc GetNotificationsByPatient (PatientId) returns (NotificationList);
+}
+
+message Empty {}
+
+message PatientId {
+  string patientId = 1;
+}
+
+message Notification {
+  string id = 1;
+  string patientId = 2;
+  string message = 3;
+  string date = 4;
+  string type = 5;
+}
+
+message NotificationList {
+  repeated Notification notifications = 1;
+}

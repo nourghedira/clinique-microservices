@@ -1,0 +1,80 @@
+type Patient {
+  id: String!
+  nom: String!
+  prenom: String!
+  dateNaissance: String!
+  telephone: String!
+  email: String!
+}
+
+type Rendezvous {
+  id: String!
+  patientId: String!
+  medecin: String!
+  date: String!
+  heure: String!
+  motif: String!
+  statut: String!
+}
+
+type Notification {
+  id: String!
+  patientId: String!
+  message: String!
+  date: String!
+  type: String!
+}
+
+type DeleteResponse {
+  success: Boolean!
+}
+
+type Query {
+  patients: [Patient!]!
+  patient(id: String!): Patient
+  rendezvous: [Rendezvous!]!
+  unRendezvous(id: String!): Rendezvous
+  notifications: [Notification!]!
+  notificationsPatient(patientId: String!): [Notification!]!
+}
+
+type Mutation {
+  ajouterPatient(
+    nom: String!
+    prenom: String!
+    dateNaissance: String!
+    telephone: String!
+    email: String!
+  ): Patient
+
+  modifierPatient(
+    id: String!
+    nom: String!
+    prenom: String!
+    dateNaissance: String!
+    telephone: String!
+    email: String!
+  ): Patient
+
+  supprimerPatient(id: String!): DeleteResponse
+
+  ajouterRendezvous(
+    patientId: String!
+    medecin: String!
+    date: String!
+    heure: String!
+    motif: String!
+  ): Rendezvous
+
+  modifierRendezvous(
+    id: String!
+    patientId: String!
+    medecin: String!
+    date: String!
+    heure: String!
+    motif: String!
+    statut: String!
+  ): Rendezvous
+
+  supprimerRendezvous(id: String!): DeleteResponse
+}
