@@ -6,7 +6,6 @@ const pages = {
   notifications: { title: 'Notifications', sub: 'Notifications automatiques générées par Kafka' }
 };
 
-// ===================== NAVIGATION =====================
 
 function showSection(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -27,7 +26,6 @@ function showMsg(id, msg, type) {
 function ouvrirModal(id) { document.getElementById(id).classList.add('open'); }
 function fermerModal(id) { document.getElementById(id).classList.remove('open'); }
 
-// ===================== PATIENTS =====================
 
 async function ajouterPatient() {
   const data = {
@@ -136,8 +134,6 @@ async function supprimerPatient(id) {
   await fetch(`${API}/patients/${id}`, { method: 'DELETE' });
   chargerPatients();
 }
-
-// ===================== RENDEZ-VOUS =====================
 
 async function ajouterRendezvous() {
   const data = {
@@ -258,7 +254,6 @@ async function supprimerRendezvous(id) {
   chargerRendezvous();
 }
 
-// ===================== NOTIFICATIONS =====================
 
 async function chargerNotifications() {
   try {
@@ -293,7 +288,6 @@ async function chargerNotifications() {
   }
 }
 
-// Charger tout au démarrage
 chargerPatients();
 chargerRendezvous();
 chargerNotifications();

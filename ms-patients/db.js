@@ -15,6 +15,6 @@ db.exec(`
   )
 `);
 
-console.log('Base de données patients connectée ✅');
+console.log('Base de données patients connectée ');
 
 module.exports = db;

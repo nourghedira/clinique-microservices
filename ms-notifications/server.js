@@ -7,7 +7,7 @@ const dbPromise = require('./db');
 // Configuration Kafka
 const kafka = new Kafka({
   clientId: 'ms-notifications',
-  brokers: ['localhost:9092']
+  brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
 });
 const consumer = kafka.consumer({ groupId: 'notifications-group' });
 
@@ -61,7 +61,7 @@ async function startKafkaConsumer() {
       });
 
       await persistNotifications(notifications);
-      console.log('Notification enregistrée ✅');
+      console.log('Notification enregistrée ');
     }
   });
 }
@@ -69,7 +69,7 @@ async function startKafkaConsumer() {
 // Démarrer le serveur
 async function main() {
   await startKafkaConsumer();
-  console.log('Kafka consumer connecté ✅');
+  console.log('Kafka consumer connecté ');
 
   const server = new grpc.Server();
   server.addService(notificationProto.NotificationService.service, {
@@ -85,7 +85,7 @@ async function main() {
         console.error('Erreur démarrage serveur:', err);
         return;
       }
-      console.log(`MS Notifications démarré sur le port ${port} ✅`);
+      console.log(`MS Notifications démarré sur le port ${port} `);
     }
   );
 }

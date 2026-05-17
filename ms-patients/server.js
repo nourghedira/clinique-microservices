@@ -84,7 +84,7 @@ function main() {
         console.error('Erreur démarrage serveur:', err);
         return;
       }
-      console.log(`MS Patients démarré sur le port ${port} ✅`);
+      console.log(`MS Patients démarré sur le port ${port} `);
     }
   );
 }

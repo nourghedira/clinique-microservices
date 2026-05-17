@@ -8,11 +8,11 @@ const db = require('./db');
 // Configuration Kafka
 const kafka = new Kafka({
   clientId: 'ms-rendezvous',
-  brokers: ['localhost:9092']
+  brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
 });
 const producer = kafka.producer();
 
-// Charger le fichier proto
+
 const packageDefinition = protoLoader.loadSync(
   path.join(__dirname, 'rendezvous.proto'),
   {
@@ -50,7 +50,7 @@ async function createRendezvous(call, callback) {
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `).run(id, patientId, medecin, date, heure, motif, statut);
 
-  // Publier événement Kafka
+  
   await producer.send({
     topic: 'rdv-cree',
     messages: [{
@@ -58,7 +58,7 @@ async function createRendezvous(call, callback) {
     }]
   });
 
-  console.log('Événement Kafka publié : rdv-cree ✅');
+  console.log('Événement Kafka publié : rdv-cree ');
   callback(null, { id, patientId, medecin, date, heure, motif, statut });
 }
 
@@ -87,7 +87,7 @@ function deleteRendezvous(call, callback) {
 // Démarrer le serveur
 async function main() {
   await producer.connect();
-  console.log('Kafka producer connecté ✅');
+  console.log('Kafka producer connecté ');
 
   const server = new grpc.Server();
   server.addService(rendezvousProto.RendezvousService.service, {
@@ -106,7 +106,7 @@ async function main() {
         console.error('Erreur démarrage serveur:', err);
         return;
       }
-      console.log(`MS Rendez-vous démarré sur le port ${port} ✅`);
+      console.log(`MS Rendez-vous démarré sur le port ${port} `);
     }
   );
 }

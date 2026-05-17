@@ -67,7 +67,7 @@ async function initDatabase() {
     await db.notifications.bulkInsert(initial);
   }
 
-  console.log('Base de données notifications connectée ✅');
+  console.log('Base de données notifications connectée ');
 
   return {
     db,

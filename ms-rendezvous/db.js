@@ -15,6 +15,6 @@ db.exec(`
   )
 `);
 
-console.log('Base de données rendezvous connectée ✅');
+console.log('Base de données rendezvous connectée ');
 
 module.exports = db;

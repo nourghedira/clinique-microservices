@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
@@ -18,5 +16,53 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  ms-patients:
+    build: ./ms-patients
+    container_name: ms-patients
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./ms-patients/patients.db:/app/patients.db
+    depends_on:
+      - kafka
+
+  ms-rendezvous:
+    build: ./ms-rendezvous
+    container_name: ms-rendezvous
+    ports:
+      - "50052:50052"
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    volumes:
+      - ./ms-rendezvous/rendezvous.db:/app/rendezvous.db
+    depends_on:
+      - kafka
+
+  ms-notifications:
+    build: ./ms-notifications
+    container_name: ms-notifications
+    ports:
+      - "50053:50053"
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    volumes:
+      - ./ms-notifications/notifications.json:/app/notifications.json
+    depends_on:
+      - kafka
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - MS_PATIENTS=ms-patients:50051
+      - MS_RENDEZVOUS=ms-rendezvous:50052
+      - MS_NOTIFICATIONS=ms-notifications:50053
+    depends_on:
+      - ms-patients
+      - ms-rendezvous
+      - ms-notifications
