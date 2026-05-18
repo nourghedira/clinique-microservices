@@ -9,20 +9,44 @@ Application de gestion de clinique basée sur une architecture microservices.
 - **MS Rendez-vous** (port 50052) : gRPC + SQLite3 + Kafka Producer
 - **MS Notifications** (port 50053) : gRPC + RxDB + Kafka Consumer
 
-## Technologies utilisées
+## Technologies
 
-- Node.js
-- gRPC + Protobuf
-- REST + GraphQL
-- Apache Kafka
-- SQLite3
-- RxDB
-- Docker
+| Composant | Technologie |
+|---|---|
+| Client | HTML + CSS + JavaScript |
+| API Gateway | Node.js + Express + GraphQL |
+| Communication Gateway → MS | gRPC (HTTP/2 + Protobuf) |
+| Communication MS → MS | Apache Kafka (Asynchrone) |
+| Base de données patients | SQLite3 |
+| Base de données rendez-vous | SQLite3 |
+| Base de données notifications | RxDB |
+| Conteneurisation | Docker + Docker Compose |
+
 
 ## Prérequis
-
 - Node.js
-- Docker Desktop
+
+- Docker Desktop installé et lancé
+
+### Lancer tout le projet
+```bash
+docker-compose up --build
+### Vérifier que tout fonctionne
+```bash
+docker ps
+### Acceder a l interface
+Ouvre dans le navigateur :
+client/index.html
+
+### Arreter proprement
+```bash
+docker-compose stop
+```
+
+### Relancer apres arret
+```bash
+docker-compose start
+
 
 ## Installation
 
@@ -96,3 +120,18 @@ mutation {
 
 | rdv-cree | MS Rendez-vous | MS Notifications |
 
+# Securite
+
+- CORS active sur l API Gateway
+- Rate Limiting : 100 requetes / 15 minutes par IP
+
+## Structure du projet
+clinique-microservices/
+├── api-gateway/          -> REST + GraphQL + CORS
+├── ms-patients/          -> gRPC + SQLite3
+├── ms-rendezvous/        -> gRPC + SQLite3 + Kafka
+├── ms-notifications/     -> gRPC + RxDB + Kafka
+├── client/               -> Interface HTML
+├── docs/                 -> Documentation technique
+├── docker-compose.yml    -> Orchestration Docker
+└── README.md

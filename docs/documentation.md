@@ -131,3 +131,33 @@ tous les champs.
 - CORS activé sur l'API Gateway
 - Rate Limiting : 100 requêtes / 15 minutes par IP
 
+## 7. Docker
+
+### Conteneurisation
+Chaque microservice possède son propre Dockerfile :
+
+| Service | Dockerfile |
+|---|---|
+| MS Patients | ms-patients/Dockerfile |
+| MS Rendez-vous | ms-rendezvous/Dockerfile |
+| MS Notifications | ms-notifications/Dockerfile |
+| API Gateway | api-gateway/Dockerfile |
+
+### Volumes
+Les données sont persistées grâce aux volumes Docker :
+
+| Volume | Fichier |
+|---|---|
+| patients.db | ms-patients/patients.db |
+| rendezvous.db | ms-rendezvous/rendezvous.db |
+| notifications.json | ms-notifications/notifications.json |
+
+### Commandes importantes
+
+| Commande | Description |
+|---|---|
+| `docker-compose up --build` | Lance tout le projet |
+| `docker-compose stop` | Arrête proprement sans perdre les données |
+| `docker-compose start` | Relance après arrêt |
+| `docker ps` | Vérifie les containers actifs |
+| `docker logs ms-patients` | Voir les logs d'un container |

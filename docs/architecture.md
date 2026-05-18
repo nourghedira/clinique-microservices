@@ -27,18 +27,6 @@ REST/GraphQL
 
                                     
 
-## Technologies
-
-| Composant | Technologie |
-|---|---|
-| Client | HTML + CSS + JavaScript |
-| API Gateway | Node.js + Express + GraphQL |
-| Communication Gateway → MS | gRPC (HTTP/2 + Protobuf) |
-| Communication MS → MS | Apache Kafka (Asynchrone) |
-| Base de données patients | SQLite3 |
-| Base de données rendez-vous | SQLite3 |
-| Base de données notifications | RxDB |
-| Conteneurisation | Docker + Docker Compose |
 
 
 
