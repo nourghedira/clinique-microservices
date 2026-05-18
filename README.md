@@ -96,6 +96,3 @@ mutation {
 
 | rdv-cree | MS Rendez-vous | MS Notifications |
 
-## Auteur
-
-Nour Ghedira - GL2 2025/2026

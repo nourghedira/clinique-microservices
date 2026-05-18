@@ -4,7 +4,7 @@ const path = require('path');
 const { randomUUID } = require('crypto');
 const db = require('./db');
 
-// Charger le fichier proto
+
 const packageDefinition = protoLoader.loadSync(
   path.join(__dirname, 'patient.proto'),
   {
@@ -18,7 +18,7 @@ const packageDefinition = protoLoader.loadSync(
 
 const patientProto = grpc.loadPackageDefinition(packageDefinition).patients;
 
-// Implémenter les fonctions gRPC
+
 
 function getAllPatients(call, callback) {
   const patients = db.prepare('SELECT * FROM patients').all();
@@ -65,7 +65,7 @@ function deletePatient(call, callback) {
   callback(null, { success: true });
 }
 
-// Démarrer le serveur gRPC
+
 function main() {
   const server = new grpc.Server();
   server.addService(patientProto.PatientService.service, {

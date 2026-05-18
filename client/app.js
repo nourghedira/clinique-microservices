@@ -63,7 +63,7 @@ async function chargerPatients() {
     document.getElementById('stat-patients').textContent = patients.length;
     document.getElementById('badge-patients').textContent = patients.length;
 
-    // Recharger le select rendez-vous
+    
     const select = document.getElementById('rdv-patientId');
     select.innerHTML = `<option value="">-- Choisir un patient --</option>` +
       patients.map(p => `<option value="${p.id}">${p.nom} ${p.prenom}</option>`).join('');
@@ -172,7 +172,7 @@ async function chargerRendezvous() {
     const resPatients = await fetch(`${API}/patients`);
     const patients = await resPatients.json();
 
-    // Créer un dictionnaire id → nom
+    
     const patientsMap = {};
     patients.forEach(p => patientsMap[p.id] = `${p.nom} ${p.prenom}`);
 

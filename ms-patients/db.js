@@ -3,7 +3,6 @@ const path = require('path');
 
 const db = new Database(path.join(__dirname, 'patients.db'));
 
-// Créer la table patients si elle n'existe pas
 db.exec(`
   CREATE TABLE IF NOT EXISTS patients (
     id TEXT PRIMARY KEY,

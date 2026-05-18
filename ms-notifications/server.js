@@ -4,14 +4,13 @@ const path = require('path');
 const { Kafka } = require('kafkajs');
 const dbPromise = require('./db');
 
-// Configuration Kafka
 const kafka = new Kafka({
   clientId: 'ms-notifications',
   brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
 });
 const consumer = kafka.consumer({ groupId: 'notifications-group' });
 
-// Charger le proto
+
 const packageDefinition = protoLoader.loadSync(
   path.join(__dirname, 'notification.proto'),
   {
@@ -25,7 +24,7 @@ const packageDefinition = protoLoader.loadSync(
 
 const notificationProto = grpc.loadPackageDefinition(packageDefinition).notifications;
 
-// Fonctions gRPC
+
 async function getAllNotifications(call, callback) {
   const { notifications } = await dbPromise;
   const docs = await notifications.find().exec();
@@ -40,7 +39,7 @@ async function getNotificationsByPatient(call, callback) {
   callback(null, { notifications: docs.map(d => d.toJSON()) });
 }
 
-// Consommer les événements Kafka
+
 async function startKafkaConsumer() {
   await consumer.connect();
   await consumer.subscribe({ topic: 'rdv-cree', fromBeginning: true });
@@ -66,7 +65,7 @@ async function startKafkaConsumer() {
   });
 }
 
-// Démarrer le serveur
+
 async function main() {
   await startKafkaConsumer();
   console.log('Kafka consumer connecté ');

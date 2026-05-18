@@ -131,6 +131,3 @@ tous les champs.
 - CORS activé sur l'API Gateway
 - Rate Limiting : 100 requêtes / 15 minutes par IP
 
-## 7. Auteur
-
-Nour Ghedira - GL2 2025/2026

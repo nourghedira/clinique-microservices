@@ -5,7 +5,7 @@ const { randomUUID } = require('crypto');
 const { Kafka } = require('kafkajs');
 const db = require('./db');
 
-// Configuration Kafka
+
 const kafka = new Kafka({
   clientId: 'ms-rendezvous',
   brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
@@ -26,7 +26,7 @@ const packageDefinition = protoLoader.loadSync(
 
 const rendezvousProto = grpc.loadPackageDefinition(packageDefinition).rendezvous;
 
-// Fonctions gRPC
+
 function getAllRendezvous(call, callback) {
   const rendezvous = db.prepare('SELECT * FROM rendezvous').all();
   callback(null, { rendezvous });
@@ -84,7 +84,7 @@ function deleteRendezvous(call, callback) {
   callback(null, { success: true });
 }
 
-// Démarrer le serveur
+
 async function main() {
   await producer.connect();
   console.log('Kafka producer connecté ');

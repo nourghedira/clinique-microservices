@@ -52,7 +52,6 @@ function grpcCall(client, method, request) {
 
 
 module.exports = {
-  // Queries : La fonction qui exécute une requête GraphQL
   patients: () => grpcCall(patientClient, 'getAllPatients', {}).then(r => r.patients),
   patient: ({ id }) => grpcCall(patientClient, 'getPatient', { id }),
   rendezvous: () => grpcCall(rendezvousClient, 'getAllRendezvous', {}).then(r => r.rendezvous),

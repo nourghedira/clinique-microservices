@@ -10,11 +10,11 @@ const resolvers = require('./resolvers');
 const app = express();
 const PORT = 3000;
 
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 
-// Rate Limiting
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -22,7 +22,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// GraphQL
+
 const schema = buildSchema(
   fs.readFileSync(path.join(__dirname, 'schema.gql'), 'utf8')
 );
@@ -32,7 +32,7 @@ app.all('/graphql', createHandler({
   rootValue: resolvers
 }));
 
-// Routes REST — Patients
+
 app.get('/patients', async (req, res) => {
   try {
     const result = await resolvers.patients();
@@ -78,7 +78,7 @@ app.delete('/patients/:id', async (req, res) => {
   }
 });
 
-// Routes REST — Rendez-vous
+
 app.get('/rendezvous', async (req, res) => {
   try {
     const result = await resolvers.rendezvous();
@@ -124,7 +124,7 @@ app.delete('/rendezvous/:id', async (req, res) => {
   }
 });
 
-// Routes REST — Notifications
+
 app.get('/notifications', async (req, res) => {
   try {
     const result = await resolvers.notifications();
@@ -143,10 +143,10 @@ app.get('/notifications/:patientId', async (req, res) => {
   }
 });
 
-// Route principale
+
 app.get('/', (req, res) => {
   res.json({
-    message: 'API Gateway - Clinique Microservices ✅',
+    message: 'API Gateway - Clinique Microservices ',
     rest: {
       patients: 'GET/POST /patients',
       patient: 'GET/PUT/DELETE /patients/:id',
@@ -160,6 +160,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`API Gateway démarrée sur http://localhost:${PORT} ✅`);
-  console.log(`GraphQL disponible sur http://localhost:${PORT}/graphql ✅`);
+  console.log(`API Gateway démarrée sur http://localhost:${PORT} `);
+  console.log(`GraphQL disponible sur http://localhost:${PORT}/graphql `);
 });
